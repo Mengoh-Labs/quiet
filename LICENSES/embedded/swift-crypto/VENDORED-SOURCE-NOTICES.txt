@@ -1,0 +1,1574 @@
+
+Files: Sources/CCryptoBoringSSL/crypto/internal.h, Sources/CCryptoBoringSSL/crypto/mem.cc, Sources/CCryptoBoringSSL/crypto/cpu_intel.cc, Sources/CCryptoBoringSSL/crypto/ex_data.cc, Sources/CCryptoBoringSSL/crypto/thread.cc, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_md4.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_evp.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_blowfish.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_des.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_rc4.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_conf.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_ripemd.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_dsa.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_asn1.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_mem.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_rsa.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_stack.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_thread.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_err.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_pem.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_cipher.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_bio.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_digest.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_sha.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_ex_data.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_md5.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_cast.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_evp_errors.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_base64.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_dh.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_hmac.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_obj.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_buf.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_sha2.h, Sources/CCryptoBoringSSL/crypto/md4/md4.cc, Sources/CCryptoBoringSSL/crypto/asn1/a_int.cc, Sources/CCryptoBoringSSL/crypto/asn1/asn1_par.cc, Sources/CCryptoBoringSSL/crypto/asn1/a_gentm.cc, Sources/CCryptoBoringSSL/crypto/asn1/f_string.cc, Sources/CCryptoBoringSSL/crypto/asn1/a_bool.cc, Sources/CCryptoBoringSSL/crypto/asn1/a_bitstr.cc, Sources/CCryptoBoringSSL/crypto/asn1/a_type.cc, Sources/CCryptoBoringSSL/crypto/asn1/asn1_lib.cc, Sources/CCryptoBoringSSL/crypto/asn1/a_i2d_fp.cc, Sources/CCryptoBoringSSL/crypto/asn1/a_utctm.cc, Sources/CCryptoBoringSSL/crypto/asn1/a_d2i_fp.cc, Sources/CCryptoBoringSSL/crypto/asn1/a_octet.cc, Sources/CCryptoBoringSSL/crypto/asn1/a_object.cc, Sources/CCryptoBoringSSL/crypto/asn1/a_dup.cc, Sources/CCryptoBoringSSL/crypto/asn1/f_int.cc, Sources/CCryptoBoringSSL/crypto/pem/pem_pkey.cc, Sources/CCryptoBoringSSL/crypto/pem/internal.h, Sources/CCryptoBoringSSL/crypto/pem/pem_pk8.cc, Sources/CCryptoBoringSSL/crypto/pem/pem_lib.cc, Sources/CCryptoBoringSSL/crypto/pem/pem_oth.cc, Sources/CCryptoBoringSSL/crypto/pem/pem_info.cc, Sources/CCryptoBoringSSL/crypto/pem/pem_all.cc, Sources/CCryptoBoringSSL/crypto/obj/obj.cc, Sources/CCryptoBoringSSL/crypto/md5/md5.cc, Sources/CCryptoBoringSSL/crypto/rc4/rc4.cc, Sources/CCryptoBoringSSL/crypto/bio/hexdump.cc, Sources/CCryptoBoringSSL/crypto/bio/socket.cc, Sources/CCryptoBoringSSL/crypto/bio/fd.cc, Sources/CCryptoBoringSSL/crypto/bio/internal.h, Sources/CCryptoBoringSSL/crypto/bio/file.cc, Sources/CCryptoBoringSSL/crypto/bio/bio.cc, Sources/CCryptoBoringSSL/crypto/bio/bio_mem.cc, Sources/CCryptoBoringSSL/crypto/bio/printf.cc, Sources/CCryptoBoringSSL/crypto/bio/errno.cc, Sources/CCryptoBoringSSL/crypto/bio/connect.cc, Sources/CCryptoBoringSSL/crypto/des/internal.h, Sources/CCryptoBoringSSL/crypto/des/des.cc, Sources/CCryptoBoringSSL/crypto/lhash/lhash.cc, Sources/CCryptoBoringSSL/crypto/lhash/internal.h, Sources/CCryptoBoringSSL/crypto/digest/digest_extra.cc, Sources/CCryptoBoringSSL/crypto/rsa/internal.h, Sources/CCryptoBoringSSL/crypto/rsa/rsa_crypt.cc, Sources/CCryptoBoringSSL/crypto/base64/base64.cc, Sources/CCryptoBoringSSL/crypto/cipher/derive_key.cc, Sources/CCryptoBoringSSL/crypto/cipher/internal.h, Sources/CCryptoBoringSSL/crypto/cipher/e_rc4.cc, Sources/CCryptoBoringSSL/crypto/cipher/e_null.cc, Sources/CCryptoBoringSSL/crypto/cipher/e_des.cc, Sources/CCryptoBoringSSL/crypto/cipher/get_cipher.cc, Sources/CCryptoBoringSSL/crypto/cipher/e_rc2.cc, Sources/CCryptoBoringSSL/crypto/dsa/dsa.cc, Sources/CCryptoBoringSSL/crypto/buf/buf.cc, Sources/CCryptoBoringSSL/crypto/x509/x_x509.cc, Sources/CCryptoBoringSSL/crypto/x509/x509rset.cc, Sources/CCryptoBoringSSL/crypto/x509/x509_txt.cc, Sources/CCryptoBoringSSL/crypto/x509/a_sign.cc, Sources/CCryptoBoringSSL/crypto/x509/x_sig.cc, Sources/CCryptoBoringSSL/crypto/x509/x509_d2.cc, Sources/CCryptoBoringSSL/crypto/x509/x509_v3.cc, Sources/CCryptoBoringSSL/crypto/x509/a_verify.cc, Sources/CCryptoBoringSSL/crypto/x509/x_attrib.cc, Sources/CCryptoBoringSSL/crypto/x509/x_all.cc, Sources/CCryptoBoringSSL/crypto/x509/x_crl.cc, Sources/CCryptoBoringSSL/crypto/x509/x509_def.cc, Sources/CCryptoBoringSSL/crypto/x509/by_dir.cc, Sources/CCryptoBoringSSL/crypto/x509/x509_lu.cc, Sources/CCryptoBoringSSL/crypto/x509/x_algor.cc, Sources/CCryptoBoringSSL/crypto/x509/i2d_pr.cc, Sources/CCryptoBoringSSL/crypto/x509/x509name.cc, Sources/CCryptoBoringSSL/crypto/x509/t_req.cc, Sources/CCryptoBoringSSL/crypto/x509/x_req.cc, Sources/CCryptoBoringSSL/crypto/x509/x509_ext.cc, Sources/CCryptoBoringSSL/crypto/x509/by_file.cc, Sources/CCryptoBoringSSL/crypto/x509/x509_req.cc, Sources/CCryptoBoringSSL/crypto/x509/x509_vfy.cc, Sources/CCryptoBoringSSL/crypto/x509/x509_set.cc, Sources/CCryptoBoringSSL/crypto/x509/x509_cmp.cc, Sources/CCryptoBoringSSL/crypto/x509/algorithm.cc, Sources/CCryptoBoringSSL/crypto/x509/x_pubkey.cc, Sources/CCryptoBoringSSL/crypto/x509/a_digest.cc, Sources/CCryptoBoringSSL/crypto/x509/t_x509a.cc, Sources/CCryptoBoringSSL/crypto/x509/x509.cc, Sources/CCryptoBoringSSL/crypto/x509/x_name.cc, Sources/CCryptoBoringSSL/crypto/x509/x509_obj.cc, Sources/CCryptoBoringSSL/crypto/x509/t_x509.cc, Sources/CCryptoBoringSSL/crypto/x509/x509_att.cc, Sources/CCryptoBoringSSL/crypto/x509/x_spki.cc, Sources/CCryptoBoringSSL/crypto/evp/sign.cc, Sources/CCryptoBoringSSL/crypto/evp/evp_asn1.cc, Sources/CCryptoBoringSSL/crypto/evp/evp.cc, Sources/CCryptoBoringSSL/crypto/bn/convert.cc, Sources/CCryptoBoringSSL/crypto/bn/exponentiation.cc, Sources/CCryptoBoringSSL/crypto/bn/div.cc, Sources/CCryptoBoringSSL/crypto/stack/stack.cc, Sources/CCryptoBoringSSL/crypto/conf/conf.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/hmac/hmac.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/dh/dh.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/dh/check.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/digest/digests.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/digest/internal.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/digest/digest.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/rsa/internal.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/rsa/blinding.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/rsa/rsa_impl.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/rsa/rsa.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/cipher/internal.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/cipher/cipher.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/tls/kdf.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/add.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/generic.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/random.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/shift.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/div.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/bn.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/exponentiation.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/cmp.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/prime.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/montgomery.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/mul.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/bytes.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/gcd.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/sha/sha1.cc.inc
+
+// Copyright 1995-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/crypto.cc, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_bytestring.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_hkdf.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_pkcs7.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_poly1305.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_crypto.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_rand.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_aead.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_chacha.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_engine.h, Sources/CCryptoBoringSSL/crypto/bytestring/internal.h, Sources/CCryptoBoringSSL/crypto/bytestring/ber.cc, Sources/CCryptoBoringSSL/crypto/bytestring/cbs.cc, Sources/CCryptoBoringSSL/crypto/bytestring/cbb.cc, Sources/CCryptoBoringSSL/crypto/bio/socket_helper.cc, Sources/CCryptoBoringSSL/crypto/cipher/e_chacha20poly1305.cc, Sources/CCryptoBoringSSL/crypto/cipher/e_tls.cc, Sources/CCryptoBoringSSL/crypto/rand/urandom.cc, Sources/CCryptoBoringSSL/crypto/rand/windows.cc, Sources/CCryptoBoringSSL/crypto/engine/engine.cc, Sources/CCryptoBoringSSL/crypto/pkcs7/pkcs7.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/slhdsa/slhdsa.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/cipher/aead.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/mlkem/mlkem.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/hkdf/hkdf.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/mldsa/mldsa.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/rand/rand.cc.inc
+
+// Copyright 2014 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/cpu_aarch64_linux.cc, Sources/CCryptoBoringSSL/crypto/cpu_arm_linux.cc, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_pool.h, Sources/CCryptoBoringSSL/crypto/bytestring/asn1_compat.cc, Sources/CCryptoBoringSSL/crypto/poly1305/internal.h, Sources/CCryptoBoringSSL/crypto/rand/deterministic.cc, Sources/CCryptoBoringSSL/crypto/curve25519/spake25519.cc, Sources/CCryptoBoringSSL/crypto/pool/pool.cc, Sources/CCryptoBoringSSL/crypto/pool/internal.h
+
+// Copyright 2016 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/thread_pthread.cc, Sources/CCryptoBoringSSL/crypto/thread_win.cc
+
+// Copyright 2015 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Ensure we can't call OPENSSL_malloc circularly.
+
+Files: Sources/CCryptoBoringSSL/crypto/thread_none.cc, Sources/CCryptoBoringSSL/crypto/refcount.cc, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_cmac.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_curve25519.h, Sources/CCryptoBoringSSL/crypto/bn/bn_asn1.cc, Sources/CCryptoBoringSSL/crypto/conf/internal.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/util.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/rand/internal.h
+
+// Copyright 2015 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/cpu_aarch64_apple.cc, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_blake2.h, Sources/CCryptoBoringSSL/crypto/blake2/blake2.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/ecdsa/internal.h
+
+// Copyright 2021 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/cpu_aarch64_openbsd.cc
+
+// Copyright (c) 2022, Robert Nagy <robert.nagy@gmail.com>
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/cpu_aarch64_win.cc
+
+// Copyright 2018 The BoringSSL Authors
+// Copyright (c) 2020, Arm Ltd.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/bcm_support.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_bcm_public.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_time.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_mldsa.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_mlkem.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_slhdsa.h, Sources/CCryptoBoringSSL/crypto/slhdsa/slhdsa.cc, Sources/CCryptoBoringSSL/crypto/rsa/rsa_extra.cc, Sources/CCryptoBoringSSL/crypto/spake2plus/spake2plus.cc, Sources/CCryptoBoringSSL/crypto/spake2plus/internal.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/bcm_interface.h, Sources/CCryptoBoringSSL/crypto/mlkem/mlkem.cc, Sources/CCryptoBoringSSL/crypto/mldsa/mldsa.cc, Sources/CCryptoBoringSSL/crypto/sha/sha256.cc, Sources/CCryptoBoringSSL/crypto/sha/sha1.cc, Sources/CCryptoBoringSSL/crypto/sha/sha512.cc, Sources/CCryptoBoringSSL/crypto/rand/internal.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/slhdsa/params.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/slhdsa/merkle.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/slhdsa/address.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/slhdsa/thash.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/slhdsa/fors.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/slhdsa/fors.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/slhdsa/wots.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/slhdsa/thash.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/slhdsa/wots.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/slhdsa/merkle.cc.inc
+
+// Copyright 2024 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/mem_internal.h, Sources/CCryptoBoringSSL/crypto/fuzzer_mode.cc, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_cms.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_xwing.h, Sources/CCryptoBoringSSL/crypto/ecdsa/ecdsa_p1363.cc, Sources/CCryptoBoringSSL/crypto/cipher/e_aeseax.cc, Sources/CCryptoBoringSSL/crypto/xwing/xwing.cc, Sources/CCryptoBoringSSL/crypto/cms/cms.cc, Sources/CCryptoBoringSSL/crypto/aes/aes.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/entropy/internal.h
+
+// Copyright 2025 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/cpu_aarch64_sysreg.cc, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_asm_base.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_target.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_x509v3.h, Sources/CCryptoBoringSSL/crypto/rand/getentropy.cc, Sources/CCryptoBoringSSL/crypto/rand/trusty.cc, Sources/CCryptoBoringSSL/crypto/rand/ios.cc, Sources/CCryptoBoringSSL/crypto/kyber/internal.h, Sources/CCryptoBoringSSL/crypto/kyber/kyber.cc, Sources/CCryptoBoringSSL/crypto/curve25519/curve25519_64_adx.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/keccak/internal.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/keccak/keccak.cc.inc
+
+// Copyright 2023 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/cpu_arm_linux.h, Sources/CCryptoBoringSSL/crypto/cpu_aarch64_fuchsia.cc, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_boringssl_prefix_symbols_asm.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_hrss.h, Sources/CCryptoBoringSSL/crypto/md5/internal.h, Sources/CCryptoBoringSSL/crypto/bytestring/unicode.cc, Sources/CCryptoBoringSSL/crypto/chacha/internal.h, Sources/CCryptoBoringSSL/crypto/hrss/internal.h, Sources/CCryptoBoringSSL/crypto/hrss/hrss.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/simple_mul.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/scalar.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/felem.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/tls/internal.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/div_extra.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/gcd_extra.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/sha/internal.h
+
+// Copyright 2018 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/cpu_arm_freebsd.cc, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_ctrdrbg.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_kdf.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_posix_time.h, Sources/CCryptoBoringSSL/crypto/x509/policy.cc, Sources/CCryptoBoringSSL/crypto/evp/p_hkdf.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/dh/internal.h
+
+// Copyright 2022 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_aes.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_ecdsa.h, Sources/CCryptoBoringSSL/crypto/ecdsa/ecdsa_asn1.cc, Sources/CCryptoBoringSSL/crypto/ec/ec_asn1.cc, Sources/CCryptoBoringSSL/crypto/x509/asn1_gen.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/ecdsa/ecdsa.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/aes/aes.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/aes/mode_wrappers.cc.inc
+
+// Copyright 2002-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_arm_arch.h, Sources/CCryptoBoringSSL/crypto/dh/params.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/cipher/e_aesccm.cc.inc
+
+// Copyright 2011-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_asn1_mac.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_obj_mac.h
+
+// Copyright 2016 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* This header is provided in order to make compiling against code that expects
+   OpenSSL easier. */
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_service_indicator.h
+
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// This empty header is provided in order to make compiling against older code
+// easier. Some bindings libraries depended on every header that was present in
+// an older version of library.
+//
+// TODO(davidben): Remove this header from downstream code and remove the file.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL.h, Sources/CXKCP/include/CXKCP.h
+
+//===----------------------------------------------------------------------===//
+//
+// This source file is part of the SwiftCrypto open source project
+//
+// Copyright (c) 2019 Apple Inc. and the SwiftCrypto project authors
+// Licensed under Apache License v2.0
+//
+// See LICENSE.txt for license information
+// See CONTRIBUTORS.txt for the list of SwiftCrypto project authors
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+//===----------------------------------------------------------------------===//
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_lhash.h
+
+// Copyright 2025 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// This header is provided in order to make compiling against code that expects
+// OpenSSL easier.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_ec.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_ec_key.h
+
+// Copyright 2000-2016 The OpenSSL Project Authors. All Rights Reserved.
+// Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_cpu.h
+
+// Copyright 2014 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// This header is provided for compatibility with older revisions of BoringSSL.
+// TODO(davidben): Remove this header.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_asn1t.h, Sources/CCryptoBoringSSL/crypto/asn1/tasn_typ.cc, Sources/CCryptoBoringSSL/crypto/asn1/tasn_fre.cc, Sources/CCryptoBoringSSL/crypto/asn1/tasn_dec.cc, Sources/CCryptoBoringSSL/crypto/asn1/a_strex.cc, Sources/CCryptoBoringSSL/crypto/asn1/tasn_new.cc, Sources/CCryptoBoringSSL/crypto/asn1/tasn_utl.cc, Sources/CCryptoBoringSSL/crypto/asn1/tasn_enc.cc, Sources/CCryptoBoringSSL/crypto/dh/dh_asn1.cc, Sources/CCryptoBoringSSL/crypto/rsa/rsa_asn1.cc, Sources/CCryptoBoringSSL/crypto/x509/x_exten.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_ocsp.cc, Sources/CCryptoBoringSSL/crypto/x509/name_print.cc, Sources/CCryptoBoringSSL/crypto/evp/internal.h, Sources/CCryptoBoringSSL/crypto/bn/sqrt.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/ctx.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/sqrt.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/jacobi.cc.inc
+
+// Copyright 2000-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_ossl_typ.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_objects.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_pkcs12.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_safestack.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_opensslv.h
+
+// Copyright 2014 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* This header is provided in order to make compiling against code that expects
+   OpenSSL easier. */
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_opensslconf.h
+
+// Copyright 2014 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// This header is provided in order to make compiling against code that expects
+// OpenSSL easier.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_e_os2.h
+
+// Copyright 2018 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* This header is provided in order to make compiling against code that expects
+   OpenSSL easier. */
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_x509.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_bn.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/internal.h
+
+// Copyright 1995-2016 The OpenSSL Project Authors. All Rights Reserved.
+// Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_buffer.h
+
+// Copyright 2015 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* This header is provided in order to make compiling against code that expects
+   OpenSSL easier. */
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_x509_vfy.h
+
+// Copyright 2021 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* This header is provided in order to make compiling against code that expects
+   OpenSSL easier. */
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_siphash.h, Sources/CCryptoBoringSSL/crypto/trust_token/internal.h, Sources/CCryptoBoringSSL/crypto/trust_token/trust_token.cc, Sources/CCryptoBoringSSL/crypto/ec/ec_derive.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/fips_shared_support.cc, Sources/CCryptoBoringSSL/crypto/evp/p_x25519.cc, Sources/CCryptoBoringSSL/crypto/evp/p_x25519_asn1.cc, Sources/CCryptoBoringSSL/crypto/siphash/siphash.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/aes/aes_nohw.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/aes/gcm_nohw.cc.inc
+
+// Copyright 2019 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_type_check.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_pkcs8.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_x509v3_errors.h, Sources/CCryptoBoringSSL/crypto/asn1/a_mbstr.cc, Sources/CCryptoBoringSSL/crypto/asn1/asn_pack.cc, Sources/CCryptoBoringSSL/crypto/asn1/a_strnid.cc, Sources/CCryptoBoringSSL/crypto/asn1/a_time.cc, Sources/CCryptoBoringSSL/crypto/bio/pair.cc, Sources/CCryptoBoringSSL/crypto/dsa/dsa_asn1.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_ia5.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_genn.cc, Sources/CCryptoBoringSSL/crypto/x509/x509_trs.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_alt.cc, Sources/CCryptoBoringSSL/crypto/x509/t_crl.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_extku.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_purp.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_akey.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_enum.cc, Sources/CCryptoBoringSSL/crypto/x509/x509spki.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_info.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_bitst.cc, Sources/CCryptoBoringSSL/crypto/x509/x_x509a.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_int.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_bcons.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_crld.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_skey.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_cpols.cc, Sources/CCryptoBoringSSL/crypto/evp/pbkdf.cc, Sources/CCryptoBoringSSL/crypto/pkcs8/p5_pbev2.cc, Sources/CCryptoBoringSSL/crypto/pkcs8/internal.h, Sources/CCryptoBoringSSL/crypto/pkcs8/pkcs8.cc, Sources/CCryptoBoringSSL/crypto/pkcs8/pkcs8_x509.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/digest/md32_common.h
+
+// Copyright 1999-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_base.h, Sources/CCryptoBoringSSL/crypto/pem/pem_x509.cc, Sources/CCryptoBoringSSL/crypto/pem/pem_xaux.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_akeya.cc, Sources/CCryptoBoringSSL/crypto/x509/x509cset.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/cipher/e_aes.cc.inc
+
+// Copyright 2001-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_boringssl_prefix_symbols.h
+
+// Copyright 2018 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// BORINGSSL_ADD_PREFIX pastes two identifiers into one. It performs one
+// iteration of macro expansion on its arguments before pasting.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_nid.h, Sources/CCryptoBoringSSL/crypto/obj/obj_dat.h
+
+// Copyright 1995-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// This file is generated by crypto/obj/objects.go.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_span.h, Sources/CCryptoBoringSSL/crypto/err/internal.h, Sources/CCryptoBoringSSL/crypto/cipher/e_aesgcmsiv.cc, Sources/CCryptoBoringSSL/crypto/cipher/e_aesctrhmac.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/delocate.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/bcm.cc, Sources/CCryptoBoringSSL/crypto/evp/p_ed25519.cc, Sources/CCryptoBoringSSL/crypto/evp/p_ed25519_asn1.cc, Sources/CCryptoBoringSSL/crypto/rand/forkunsafe.cc, Sources/CCryptoBoringSSL/crypto/rand/rand.cc, Sources/CCryptoBoringSSL/crypto/pkcs7/internal.h, Sources/CCryptoBoringSSL/crypto/pkcs7/pkcs7_x509.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/rand/ctrdrbg.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/self_check/self_check.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/self_check/fips.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/aes/internal.h
+
+// Copyright 2017 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_ecdh.h, Sources/CCryptoBoringSSL/crypto/ecdh/ecdh.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/ec_key.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/ecdh/ecdh.cc.inc
+
+// Copyright 2002-2016 The OpenSSL Project Authors. All Rights Reserved.
+// Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_hpke.h, Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_trust_token.h, Sources/CCryptoBoringSSL/crypto/trust_token/voprf.cc, Sources/CCryptoBoringSSL/crypto/trust_token/pmbtoken.cc, Sources/CCryptoBoringSSL/crypto/ec/internal.h, Sources/CCryptoBoringSSL/crypto/ec/hash_to_curve.cc, Sources/CCryptoBoringSSL/crypto/dsa/internal.h, Sources/CCryptoBoringSSL/crypto/rand/getrandom_fillin.h, Sources/CCryptoBoringSSL/crypto/rand/passive.cc, Sources/CCryptoBoringSSL/crypto/rand/fork_detect.cc, Sources/CCryptoBoringSSL/crypto/curve25519/internal.h, Sources/CCryptoBoringSSL/crypto/hpke/hpke.cc
+
+// Copyright 2020 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_is_boringssl.h
+
+// Copyright 2017 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// This header is provided in order to catch include path errors in consuming
+// BoringSSL.
+
+Files: Sources/CCryptoBoringSSL/gen/crypto/err_data.cc
+
+// Copyright 2015 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// This file was generated by go run ./util/pregenerate.
+
+Files: Sources/CCryptoBoringSSL/crypto/asn1/internal.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/rsa/padding.cc.inc
+
+// Copyright 2005-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/asn1/posix_time.cc
+
+// Copyright 2022 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Time conversion to/from POSIX time_t and struct tm, with no support
+// for time zones other than UTC
+
+Files: Sources/CCryptoBoringSSL/crypto/obj/obj_xref.cc, Sources/CCryptoBoringSSL/crypto/x509/rsa_pss.cc, Sources/CCryptoBoringSSL/crypto/evp/evp_ctx.cc, Sources/CCryptoBoringSSL/crypto/evp/p_ec_asn1.cc, Sources/CCryptoBoringSSL/crypto/evp/p_dsa_asn1.cc, Sources/CCryptoBoringSSL/crypto/evp/print.cc, Sources/CCryptoBoringSSL/crypto/evp/p_rsa.cc, Sources/CCryptoBoringSSL/crypto/evp/p_rsa_asn1.cc, Sources/CCryptoBoringSSL/crypto/evp/p_ec.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/digestsign/digestsign.cc.inc
+
+// Copyright 2006-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/chacha/chacha.cc
+
+// Copyright 2014 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Adapted from the public domain, estream code by D. Bernstein.
+
+Files: Sources/CCryptoBoringSSL/crypto/err/err.cc
+
+// Copyright 1995-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Ensure we can't call OPENSSL_malloc circularly.
+
+Files: Sources/CCryptoBoringSSL/crypto/rsa/rsa_print.cc
+
+// Copyright 2006-2017 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/cipher/tls_cbc.cc
+
+// Copyright 2012-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/x509/v3_pmaps.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_ncons.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_pcons.cc
+
+// Copyright 2003-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/x509/internal.h
+
+// Copyright 2013-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/x509/x509_vpm.cc, Sources/CCryptoBoringSSL/crypto/fipsmodule/entropy/sha512.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/sha/sha512.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/sha/sha256.cc.inc
+
+// Copyright 2004-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/x509/v3_lib.cc, Sources/CCryptoBoringSSL/crypto/x509/v3_utl.cc
+
+// Copyright 1999-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* X509 v3 extension utilities */
+
+Files: Sources/CCryptoBoringSSL/crypto/x509/v3_prn.cc
+
+// Copyright 1999-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// X509 v3 extension utilities
+
+Files: Sources/CCryptoBoringSSL/crypto/x509/v3_conf.cc
+
+// Copyright 1999-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// extension creation utilities
+
+Files: Sources/CCryptoBoringSSL/crypto/poly1305/poly1305_vec.cc
+
+// Copyright 2014 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// This implementation of poly1305 is by Andrew Moon
+// (https://github.com/floodyberry/poly1305-donna) and released as public
+// domain. It implements SIMD vectorization based on the algorithm described in
+// http://cr.yp.to/papers.html#neoncrypto. Unrolled to 2 powers, i.e. 64 byte
+// block size
+
+Files: Sources/CCryptoBoringSSL/crypto/poly1305/poly1305.cc
+
+// Copyright 2014 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// This implementation of poly1305 is by Andrew Moon
+// (https://github.com/floodyberry/poly1305-donna) and released as public
+// domain.
+
+Files: Sources/CCryptoBoringSSL/crypto/poly1305/poly1305_arm.cc
+
+// Copyright 2014 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// This implementation was taken from the public domain, neon2 version in
+// SUPERCOP by D. J. Bernstein and Peter Schwabe.
+
+Files: Sources/CCryptoBoringSSL/crypto/evp/p_dh_asn1.cc
+
+// Copyright 2006-2021 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/evp/p_dh.cc
+
+// Copyright 2006-2019 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/evp/scrypt.cc
+
+// Copyright 2015-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/curve25519/curve25519.cc
+
+// Copyright 2020 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Some of this code is taken from the ref10 version of Ed25519 in SUPERCOP
+// 20141124 (http://bench.cr.yp.to/supercop.html). That code is released as
+// public domain. Other parts have been replaced to call into code generated by
+// Fiat (https://github.com/mit-plv/fiat-crypto) in //third_party/fiat.
+//
+// The field functions are shared by Ed25519 and X25519 where possible.
+
+Files: Sources/CCryptoBoringSSL/crypto/curve25519/curve25519_tables.h
+
+// Copyright 2020 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// This file is generated from
+//    ./make_curve25519_tables.py > curve25519_tables.h
+
+Files: Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/p256-nistz.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/p256-nistz.h
+
+// Copyright 2014-2016 The OpenSSL Project Authors. All Rights Reserved.
+// Copyright (c) 2014, Intel Corporation. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// Originally written by Shay Gueron (1, 2), and Vlad Krasnov (1)
+// (1) Intel Corporation, Israel Development Center, Haifa, Israel
+// (2) University of Haifa, Israel
+//
+// Reference:
+// S.Gueron and V.Krasnov, "Fast Prime Field Elliptic Curve Cryptography with
+//                          256 Bit Primes"
+
+Files: Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/p256.cc.inc
+
+// Copyright 2020 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// An implementation of the NIST P-256 elliptic curve point multiplication.
+// 256-bit Montgomery form for 64 and 32-bit. Field operations are generated by
+// Fiat, which lives in //third_party/fiat.
+
+Files: Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/internal.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/wnaf.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/simple.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/ec.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/ec_montgomery.cc.inc
+
+// Copyright 2001-2016 The OpenSSL Project Authors. All Rights Reserved.
+// Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/oct.cc.inc
+
+// Copyright 2011-2016 The OpenSSL Project Authors. All Rights Reserved.
+// Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/builtin_curves.h
+
+// Copyright 2023 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// This file is generated by make_tables.go.
+
+// P-224
+
+Files: Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/p256-nistz-table.h
+
+// Copyright 2014-2016 The OpenSSL Project Authors. All Rights Reserved.
+// Copyright (c) 2015, Intel Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// This is the precomputed constant time access table for the code in
+// p256-nistz.c, for the default generator. The table consists of 37
+// subtables, each subtable contains 64 affine points. The affine points are
+// encoded as eight uint64's, four for the x coordinate and four for the y.
+// Both values are in little-endian order. There are 37 tables because a
+// signed, 6-bit wNAF form of the scalar is used and ceil(256/(6 + 1)) = 37.
+// Within each table there are 64 values because the 6-bit wNAF value can take
+// 64 values, ignoring the sign bit, which is implemented by performing a
+// negation of the affine point when required. We would like to align it to 2MB
+// in order to increase the chances of using a large page but that appears to
+// lead to invalid ELF files being produced.
+
+// This file is generated by make_tables.go.
+
+Files: Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/p224-64.cc.inc
+
+// Copyright 2015 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// A 64-bit implementation of the NIST P-224 elliptic curve point multiplication
+//
+// Inspired by Daniel J. Bernstein's public domain nistp224 implementation
+// and Adam Langley's public domain 64-bit C implementation of curve25519.
+
+Files: Sources/CCryptoBoringSSL/crypto/fipsmodule/ec/p256_table.h
+
+// Copyright 2020 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// This file is generated by make_tables.go.
+
+// Base point pre computation
+// --------------------------
+//
+// Two different sorts of precomputed tables are used in the following code.
+// Each contain various points on the curve, where each point is three field
+// elements (x, y, z).
+//
+// For the base point table, z is usually 1 (0 for the point at infinity).
+// This table has 2 * 16 elements, starting with the following:
+// index | bits    | point
+// ------+---------+------------------------------
+//     0 | 0 0 0 0 | 0G
+//     1 | 0 0 0 1 | 1G
+//     2 | 0 0 1 0 | 2^64G
+//     3 | 0 0 1 1 | (2^64 + 1)G
+//     4 | 0 1 0 0 | 2^128G
+//     5 | 0 1 0 1 | (2^128 + 1)G
+//     6 | 0 1 1 0 | (2^128 + 2^64)G
+//     7 | 0 1 1 1 | (2^128 + 2^64 + 1)G
+//     8 | 1 0 0 0 | 2^192G
+//     9 | 1 0 0 1 | (2^192 + 1)G
+//    10 | 1 0 1 0 | (2^192 + 2^64)G
+//    11 | 1 0 1 1 | (2^192 + 2^64 + 1)G
+//    12 | 1 1 0 0 | (2^192 + 2^128)G
+//    13 | 1 1 0 1 | (2^192 + 2^128 + 1)G
+//    14 | 1 1 1 0 | (2^192 + 2^128 + 2^64)G
+//    15 | 1 1 1 1 | (2^192 + 2^128 + 2^64 + 1)G
+// followed by a copy of this with each element multiplied by 2^32.
+//
+// The reason for this is so that we can clock bits into four different
+// locations when doing simple scalar multiplies against the base point,
+// and then another four locations using the second 16 elements.
+//
+// Tables for other points have table[i] = iG for i in 0 .. 16.
+
+// fiat_p256_g_pre_comp is the table of precomputed base points
+
+Files: Sources/CCryptoBoringSSL/crypto/fipsmodule/entropy/jitter.cc.inc
+
+// Copyright 2025 The BoringSSL Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// BoringCrypto Jitter Entropy version 20250725.
+
+Files: Sources/CCryptoBoringSSL/crypto/fipsmodule/cmac/cmac.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/aes/gcm.cc.inc
+
+// Copyright 2010-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/fipsmodule/service_indicator/internal.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/service_indicator/service_indicator.cc.inc
+
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/rsaz_exp.h, Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/rsaz_exp.cc.inc
+
+// Copyright 2013-2016 The OpenSSL Project Authors. All Rights Reserved.
+// Copyright (c) 2012, Intel Corporation. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// Originally written by Shay Gueron (1, 2), and Vlad Krasnov (1)
+// (1) Intel Corporation, Israel Development Center, Haifa, Israel
+// (2) University of Haifa, Israel
+
+Files: Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/montgomery_inv.cc.inc
+
+// Copyright 2016 Brian Smith.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/fipsmodule/aes/key_wrap.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/aes/ctr.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/aes/cfb.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/aes/cbc.cc.inc, Sources/CCryptoBoringSSL/crypto/fipsmodule/aes/ofb.cc.inc
+
+// Copyright 2008-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+Files: Sources/CCryptoBoringSSL/crypto/fipsmodule/bn/asm/x86_64-gcc.cc.inc
+
+// Copyright 2002-2016 The OpenSSL Project Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* x86_64 BIGNUM accelerator version 0.1, December 2002.
+ *
+ * Implemented by Andy Polyakov <appro@fy.chalmers.se> for the OpenSSL
+ * project.
+ *
+ * Rights for redistribution and usage in source and binary forms are
+ * granted according to the License. Warranty of any kind is disclaimed.
+ *
+ * Q. Version 0.1? It doesn't sound like Andy, he used to assign real
+ *    versions, like 1.0...
+ * A. Well, that's because this code is basically a quick-n-dirty
+ *    proof-of-concept hack. As you can see it's implemented with
+ *    inline assembler, which means that you're bound to GCC and that
+ *    there might be enough room for further improvement.
+ *
+ * Q. Why inline assembler?
+ * A. x86_64 features own ABI which I'm not familiar with. This is
+ *    why I decided to let the compiler take care of subroutine
+ *    prologue/epilogue as well as register allocation. For reference.
+ *    Win64 implements different ABI for AMD64, different from Linux.
+ *
+ * Q. How much faster does it get?
+ * A. 'apps/openssl speed rsa dsa' output with no-asm:
+ *
+ *	                  sign    verify    sign/s verify/s
+ *	rsa  512 bits   0.0006s   0.0001s   1683.8  18456.2
+ *	rsa 1024 bits   0.0028s   0.0002s    356.0   6407.0
+ *	rsa 2048 bits   0.0172s   0.0005s     58.0   1957.8
+ *	rsa 4096 bits   0.1155s   0.0018s      8.7    555.6
+ *	                  sign    verify    sign/s verify/s
+ *	dsa  512 bits   0.0005s   0.0006s   2100.8   1768.3
+ *	dsa 1024 bits   0.0014s   0.0018s    692.3    559.2
+ *	dsa 2048 bits   0.0049s   0.0061s    204.7    165.0
+ *
+ *    'apps/openssl speed rsa dsa' output with this module:
+ *
+ *	                  sign    verify    sign/s verify/s
+ *	rsa  512 bits   0.0004s   0.0000s   2767.1  33297.9
+ *	rsa 1024 bits   0.0012s   0.0001s    867.4  14674.7
+ *	rsa 2048 bits   0.0061s   0.0002s    164.0   5270.0
+ *	rsa 4096 bits   0.0384s   0.0006s     26.1   1650.8
+ *	                  sign    verify    sign/s verify/s
+ *	dsa  512 bits   0.0002s   0.0003s   4442.2   3786.3
+ *	dsa 1024 bits   0.0005s   0.0007s   1835.1   1497.4
+ *	dsa 2048 bits   0.0016s   0.0020s    620.4    504.6
+ *
+ *    For the reference. IA-32 assembler implementation performs
+ *    very much like 64-bit code compiled with no-asm on the same
+ *    machine.
+ */
+
+Files: Sources/CXKCP/FIPS202-opt64/align.h
+
+/*
+The eXtended Keccak Code Package (XKCP)
+https://github.com/XKCP/XKCP
+
+Implementation by Gilles Van Assche and Ronny Van Keer, hereby denoted as "the implementer".
+
+For more information, feedback or questions, please refer to the Keccak Team website:
+https://keccak.team/
+
+To the extent possible under law, the implementer has waived all copyright
+and related or neighboring rights to the source code in this file.
+http://creativecommons.org/publicdomain/zero/1.0/
+*/
+
+Files: Sources/CXKCP/FIPS202-opt64/KeccakHash.c, Sources/CXKCP/FIPS202-opt64/KeccakSponge.inc, Sources/CXKCP/FIPS202-opt64/KeccakSponge.h, Sources/CXKCP/FIPS202-opt64/KeccakHash.h, Sources/CXKCP/FIPS202-opt64/KeccakSponge.c
+
+/*
+The eXtended Keccak Code Package (XKCP)
+https://github.com/XKCP/XKCP
+
+Keccak, designed by Guido Bertoni, Joan Daemen, Michaël Peeters and Gilles Van Assche.
+
+Implementation by the designers, hereby denoted as "the implementer".
+
+For more information, feedback or questions, please refer to the Keccak Team website:
+https://keccak.team/
+
+To the extent possible under law, the implementer has waived all copyright
+and related or neighboring rights to the source code in this file.
+http://creativecommons.org/publicdomain/zero/1.0/
+*/
+
+Files: Sources/CXKCP/FIPS202-opt64/KeccakP-1600-unrolling.macros, Sources/CXKCP/FIPS202-opt64/KeccakP-1600-64.macros
+
+/*
+The eXtended Keccak Code Package (XKCP)
+https://github.com/XKCP/XKCP
+
+The Keccak-p permutations, designed by Guido Bertoni, Joan Daemen, Michaël Peeters and Gilles Van Assche.
+
+Implementation by Gilles Van Assche and Ronny Van Keer, hereby denoted as "the implementer".
+
+For more information, feedback or questions, please refer to the Keccak Team website:
+https://keccak.team/
+
+To the extent possible under law, the implementer has waived all copyright
+and related or neighboring rights to the source code in this file.
+http://creativecommons.org/publicdomain/zero/1.0/
+*/
+
+Files: Sources/CXKCP/FIPS202-opt64/SimpleFIPS202.c, Sources/CXKCP/FIPS202-opt64/SimpleFIPS202.h
+
+/*
+The eXtended Keccak Code Package (XKCP)
+https://github.com/XKCP/XKCP
+
+Keccak, designed by Guido Bertoni, Joan Daemen, Michaël Peeters and Gilles Van Assche.
+
+Implementation by Gilles Van Assche, hereby denoted as "the implementer".
+
+For more information, feedback or questions, please refer to the Keccak Team website:
+https://keccak.team/
+
+To the extent possible under law, the implementer has waived all copyright
+and related or neighboring rights to the source code in this file.
+http://creativecommons.org/publicdomain/zero/1.0/
+*/
+
+Files: Sources/CXKCP/FIPS202-opt64/brg_endian.h
+
+/*
+ ---------------------------------------------------------------------------
+ Copyright (c) 1998-2008, Brian Gladman, Worcester, UK. All rights reserved.
+
+ LICENSE TERMS
+
+ The redistribution and use of this software (with or without changes)
+ is allowed without the payment of fees or royalties provided that:
+
+  1. source code distributions include the above copyright notice, this
+     list of conditions and the following disclaimer;
+
+  2. binary distributions include the above copyright notice, this list
+     of conditions and the following disclaimer in their documentation;
+
+  3. the name of the copyright holder is not used to endorse products
+     built using this software without specific written permission.
+
+ DISCLAIMER
+
+ This software is provided 'as is' with no explicit or implied warranties
+ in respect of its properties, including, but not limited to, correctness
+ and/or fitness for purpose.
+ ---------------------------------------------------------------------------
+ Issue Date: 20/12/2007
+ Changes for ARM 9/9/2010
+*/
+
+Files: Sources/CXKCP/FIPS202-opt64/KeccakP-1600-SnP.h
+
+/*
+The eXtended Keccak Code Package (XKCP)
+https://github.com/XKCP/XKCP
+
+The Keccak-p permutations, designed by Guido Bertoni, Joan Daemen, Michaël Peeters and Gilles Van Assche.
+
+Implementation by Gilles Van Assche and Ronny Van Keer, hereby denoted as "the implementer".
+
+For more information, feedback or questions, please refer to the Keccak Team website:
+https://keccak.team/
+
+To the extent possible under law, the implementer has waived all copyright
+and related or neighboring rights to the source code in this file.
+http://creativecommons.org/publicdomain/zero/1.0/
+
+---
+
+Please refer to SnP-documentation.h for more details.
+*/
+
+Files: Sources/CXKCP/FIPS202-opt64/KeccakP-1600-opt64.c
+
+/*
+The eXtended Keccak Code Package (XKCP)
+https://github.com/XKCP/XKCP
+
+The Keccak-p permutations, designed by Guido Bertoni, Joan Daemen, Michaël Peeters and Gilles Van Assche.
+
+Implementation by Gilles Van Assche and Ronny Van Keer, hereby denoted as "the implementer".
+
+For more information, feedback or questions, please refer to the Keccak Team website:
+https://keccak.team/
+
+To the extent possible under law, the implementer has waived all copyright
+and related or neighboring rights to the source code in this file.
+http://creativecommons.org/publicdomain/zero/1.0/
+
+---
+
+This file implements Keccak-p[1600] in a SnP-compatible way.
+Please refer to SnP-documentation.h for more details.
+
+This implementation comes with KeccakP-1600-SnP.h in the same folder.
+Please refer to LowLevel.build for the exact list of other files it must be combined with.
+*/
+
+Files: Sources/CXKCP/FIPS202-opt64/SnP-Relaned.h
+
+/*
+The eXtended Keccak Code Package (XKCP)
+https://github.com/XKCP/XKCP
+
+Implementation by Gilles Van Assche and Ronny Van Keer, hereby denoted as "the implementer".
+
+For more information, feedback or questions, please refer to the Keccak Team website:
+https://keccak.team/
+
+To the extent possible under law, the implementer has waived all copyright
+and related or neighboring rights to the source code in this file.
+http://creativecommons.org/publicdomain/zero/1.0/
+
+---
+
+This file contains macros that help implement a permutation in a SnP-compatible way.
+It converts an implementation that implement state input/output functions
+in a lane-oriented fashion (i.e., using SnP_AddLanes() and SnP_AddBytesInLane,
+and similarly for Overwite, Extract and ExtractAndAdd) to the byte-oriented SnP.
+Please refer to SnP-documentation.h for more details.
+*/

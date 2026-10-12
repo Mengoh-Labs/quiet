@@ -1,0 +1,36 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  checks:
+    name: checks
+    runs-on: xcode-27
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Scan Git history for secrets
+        run: |
+          brew install gitleaks
+          gitleaks git --redact --no-banner
+      - name: Install Apple Metal toolchain
+        run: xcodebuild -downloadComponent MetalToolchain
+      - name: Install terminal test tools
+        run: |
+          python3 -m venv native/.build/check-venv
+          native/.build/check-venv/bin/python -m pip install -r native/scripts/requirements-checks.txt
+      - name: Validate source and packages
+        env:
+          QUIET_TEST_PYTHON: ${{ github.workspace }}/native/.build/check-venv/bin/python
+        run: bash native/scripts/check.sh

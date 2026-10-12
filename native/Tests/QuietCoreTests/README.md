@@ -1,0 +1,1 @@
+Run `swift test -j 2`. Unit tests use owned disposable child processes and native admission checks. Live inference checks are explicit `quiet verify-apple`, `quiet verify-mlx /path/to/model`, and `quiet verify-coreml /path/to/model.mlmodelc` commands, not automatic unit-test downloads.
