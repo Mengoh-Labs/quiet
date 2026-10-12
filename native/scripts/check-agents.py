@@ -6,6 +6,11 @@ live in a temporary home passed through QUIET_AGENT_HOME, so no real session is 
 import os,sys,pty,termios,fcntl,struct,subprocess,time,select,json,shutil,tempfile,re
 import pyte
 binary=sys.argv[1]
+launch_args=[binary,'dashboard']
+# Optional process-local Foundation defaults for reproducing a hosted runner's
+# wider 12-hour clock. This never changes the user's system preferences.
+if os.environ.get('QUIET_TEST_12H')=='1':
+ launch_args+=['-AppleLocale','en_US','-AppleICUForce12HourTime','YES','-AppleICUForce24HourTime','NO']
 SECRET='ghp_'+'a1B2'*9
 home=tempfile.mkdtemp(prefix='quiet-agents-')
 work=os.path.join(home,'work','demo-project');os.makedirs(work)
@@ -38,7 +43,7 @@ try:
   fcntl.ioctl(slave,termios.TIOCSWINSZ,struct.pack('HHHH',rows,cols,0,0))
   before=termios.tcgetattr(slave)
   env=os.environ.copy();env.update(TERM='xterm-256color',QUIET_AMBIENT='off',QUIET_AGENT_HOME=home,QUIET_RENDERER='text')
-  p=subprocess.Popen([binary,'dashboard'],stdin=slave,stdout=slave,stderr=slave,env=env,start_new_session=True)
+  p=subprocess.Popen(launch_args,stdin=slave,stdout=slave,stderr=slave,env=env,start_new_session=True)
   screen=pyte.Screen(cols,rows);stream=pyte.ByteStream(screen);raw=bytearray()
   def collect(seconds):
    end=time.monotonic()+seconds
@@ -48,19 +53,36 @@ try:
   def key(text,wait=.4): os.write(master,text);collect(wait)
   def text(): return '\n'.join(screen.display)
   def row_of(needle): return next((i for i,line in enumerate(screen.display) if needle in line),None)
+  def wait_for(predicate,description,timeout=20):
+   deadline=time.monotonic()+timeout
+   while not predicate():
+    assert p.poll() is None,'dashboard exited waiting for '+description+'\n'+text()
+    assert time.monotonic()<deadline,'timed out waiting for '+description+'\n'+text()
+    collect(.2)
+  def masthead(mode,label):
+   row=screen.display[0]
+   print(f'MASTHEAD {cols}x{rows} {mode}: {row!r}',flush=True)
+   assert mode+' observatory' in row,row
+   status=re.search(r'(?:LIVE|PAUSED) / text  /  [0-9]+ms  /  ',row)
+   assert status,row
+   # control() omits a keycap that cannot fit before the right-aligned clock.
+   # At 80 columns, US 12-hour time can legitimately hide Agents/System.
+   fits=31+len(label)+4<=status.start()-1
+   assert (label in row)==fits,(row,label,fits)
   try:
-   collect(4.5)
-   assert p.poll() is None
-   assert 'system observatory' in screen.display[0] and 'Agents' in screen.display[0]
+   wait_for(lambda: 'system observatory' in screen.display[0] and row_of('PID PROGRAM') is not None,'first system frame')
+   masthead('system','Agents')
    # Process view: the fake agent is badged, and `t` brings agents to the top.
    key(b't')
-   assert 'agents first' in text()
+   wait_for(lambda: 'agents first' in text() and row_of('PID PROGRAM') is not None and
+            re.search(r'│ \*\s+\d+ ',screen.display[row_of('PID PROGRAM')+1]) is not None,'agent badge after sorting')
    header=row_of('PID PROGRAM')
    assert re.search(r'│ \*\s+\d+ ',screen.display[header+1]),screen.display[header+1]
    key(b't')
    # Agents mode.
    key(b'\t',1.0)
-   assert 'agent observatory' in screen.display[0] and 'System' in screen.display[0],screen.display[0]
+   wait_for(lambda: 'agent observatory' in screen.display[0] and 'AGENT SESSIONS' in text(),'agent mode')
+   masthead('agent','System')
    assert 'AGENTS' in screen.display[3] and 'sessions' in screen.display[3]
    assert any('TOKENS/min' in line and 'all agents' in line for line in screen.display)
    assert any('AGENT MEMORY' in line for line in screen.display) and any('AGENT SESSIONS' in line for line in screen.display)
@@ -86,14 +108,13 @@ try:
    y=row_of(f'{agent.pid} ');click=f'\x1b[<0;{x};{y+1}M\x1b[<0;{x};{y+1}m'.encode()   # the list may have re-sorted
    key(click,1.2)
    if not any('STREAM' in line for line in screen.display): key(b'o',1.2)   # a re-sort between clicks only selected it
-   assert any('STREAM' in line and str(agent.pid) in line and 'following' in line for line in screen.display),text()
+   wait_for(lambda: any('STREAM' in line and str(agent.pid) in line and 'following' in line for line in screen.display) and 'Progress note 39' in text(),'fixture stream and initial tail')
    body=text()
    assert 'Progress note 39' in body and 'AGENT' in body
    assert SECRET not in body and SECRET.encode() not in raw,'secret reached the terminal'
    # Follow: a new entry appears without input.
    with open(log,'a') as f: f.write(entry('user','Now ship **it**'))
-   collect(3.5)
-   assert 'Now ship it' in text() and 'YOU' in text()
+   wait_for(lambda: 'Now ship it' in text() and 'YOU' in text(),'new followed entry')
    # Scroll back to the start: prompt, tool call and masked secret.
    key(b'\x1b[H',.8)
    body=text()
@@ -105,17 +126,16 @@ try:
    collect(3.5)
    assert 'Please add the orbital widget' in text(),'scrolled view moved when the tail grew'
    key(b'f',.8)
-   assert 'Shipped.' in text() and 'following' in text()
+   wait_for(lambda: 'Shipped.' in text() and 'following' in text(),'return to live tail')
    # Review and other process actions do nothing here; the stream closes with o, Esc or the button.
    key(b'r');assert 'PROCESS REVIEW' not in text()
    key(b'o',.8)
    assert not any('STREAM' in line for line in screen.display) and any('AGENT SESSIONS' in line for line in screen.display)
    # From the process view, `o` on the agent's own process opens the same stream.
    key(b'g',.8)
-   assert 'system observatory' in screen.display[0]
+   wait_for(lambda: 'system observatory' in screen.display[0],'return to system mode')
    key(b'/');key(str(agent.pid).encode());key(b'\r');key(b'o',1.2)
-   assert 'agent observatory' in screen.display[0]
-   assert any('STREAM' in line and str(agent.pid) in line for line in screen.display),text()
+   wait_for(lambda: 'agent observatory' in screen.display[0] and any('STREAM' in line and str(agent.pid) in line for line in screen.display),'open stream from process view')
    key(b'\x1b',.8)
    assert not any('STREAM' in line for line in screen.display)
    key(b'q',1.0)
@@ -124,6 +144,9 @@ try:
    print('PASS: agents mode, badges, stream follow/scroll/redaction, process-view open, restoration',cols,rows)
   finally:
    if p.poll() is None: p.kill()
+   p.wait(timeout=5)
    os.close(master);os.close(slave)
 finally:
- agent.kill();shutil.rmtree(home,ignore_errors=True)
+ if agent.poll() is None: agent.kill()
+ agent.wait(timeout=5)
+ shutil.rmtree(home,ignore_errors=True)
