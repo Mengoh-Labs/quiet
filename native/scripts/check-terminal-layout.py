@@ -1,7 +1,17 @@
 """Geometry/interaction checks against real terminal frames; requires pyte."""
-import os,sys,pty,termios,fcntl,struct,subprocess,time,select,re
+import os,sys,pty,termios,fcntl,struct,subprocess,time,select,re,socket
 import pyte
 binary=sys.argv[1]
+# This reads capability metadata only; it never requests model inference.
+hardware_output=subprocess.check_output([binary,'hardware'],text=True,timeout=20)
+metal=re.search(r'^Metal: (.*); unified memory .*; Neural Engine cores: ([0-9]+)$',hardware_output,re.M)
+ai=re.search(r'^Apple Intelligence: (.+)$',hardware_output,re.M)
+assert metal and ai,hardware_output
+hardware=f'{metal[1]} / {metal[2]}-core Neural Engine'
+ai_text='AI: '+ai[1]
+# MachineMetrics excludes loopback interfaces. A single-interface VM has no
+# different interface to cycle to, unlike a developer's physical Mac.
+interface_names={name for _,name in socket.if_nameindex() if not name.startswith('lo')}
 for cols,rows in [(80,26),(110,34),(160,50),(240,80)]:
  master,slave=pty.openpty()
  fcntl.ioctl(slave,termios.TIOCSWINSZ,struct.pack('HHHH',rows,cols,0,0))
@@ -18,7 +28,16 @@ for cols,rows in [(80,26),(110,34),(160,50),(240,80)]:
   collect(4.5)
   assert p.poll() is None
   assert 'QUIET' in screen.display[0] and 'system observatory' in screen.display[0]
-  assert 'AI:' in screen.display[1] and 'Neural Engine' in screen.display[1]
+  header_row=screen.display[1]
+  print(f'HEADER {cols}x{rows}: {header_row!r}',flush=True)
+  # The renderer gives the full availability status priority and clips hardware
+  # into the space on its left. Long unavailable-model states are valid.
+  canvas_width=cols-1  # final terminal column is reserved against wrapping
+  ai_column=max(2,canvas_width-len(ai_text)-2)
+  visible_hardware=hardware[:max(0,ai_column-5)]
+  assert header_row[2:2+len(visible_hardware)]==visible_hardware,(header_row,hardware)
+  assert header_row[ai_column:canvas_width-2]==ai_text[:canvas_width-ai_column-2],(header_row,ai_text)
+  assert not header_row[:2].strip() and not header_row[-2:].strip(),header_row
   assert '◖s◗ Sort' in screen.display[2] and '◖q◗ Quit' in screen.display[2]
   # Markdown delimiters must disappear without shifting hit targets or borders.
   sort_column=screen.display[2].index('Sort')
@@ -43,7 +62,7 @@ for cols,rows in [(80,26),(110,34),(160,50),(240,80)]:
    assert any('DISKS' in row for row in screen.display)
    for label in ['Occupied', 'Active', 'Wired', 'Compressed', 'Inactive', 'Other', 'Free pool', 'Swap']:
     assert any(label in row for row in screen.display),label
-   assert any(' free / ' in row for row in screen.display)
+   assert any(' free / ' in row or 'No local volume data' in row for row in screen.display)
    def gib(value):
     amount, unit = float(value[:-1]), value[-1]
     return amount * {'G': 1, 'M': 1/1024, 'K': 1/1048576}[unit]
@@ -61,9 +80,9 @@ for cols,rows in [(80,26),(110,34),(160,50),(240,80)]:
    memory_control=screen.display[memory_row].index('◖m◗')
    key(f'\x1b[<0;{memory_control+2};{memory_row+1}M'.encode())
    assert any('DISKS' in row for row in screen.display)
-   assert any(' free / ' in row for row in screen.display)
+   assert any(' free / ' in row or 'No local volume data' in row for row in screen.display)
    key(b'm');assert any('MEMORY' in row for row in screen.display)
-  if rows>=34:
+  if rows>=34 and not any('No interface data' in row for row in screen.display):
    assert any('DOWN ' in row for row in screen.display)
    assert any('UP ' in row for row in screen.display)
    scale_row=next(i for i,line in enumerate(screen.display) if '◖a◗ Independent' in line)
@@ -75,7 +94,16 @@ for cols,rows in [(80,26),(110,34),(160,50),(240,80)]:
    previous=screen.display[net_row]
    net_control=screen.display[net_row].index('◖n◗')
    key(f'\x1b[<0;{net_control+2};{net_row+1}M'.encode())
-   assert screen.display[net_row]!=previous,'interface did not cycle'
+   if len(interface_names)>1:
+    assert screen.display[net_row]!=previous,('interface did not cycle',interface_names,previous,screen.display[net_row])
+   else:
+    assert screen.display[net_row]==previous,('single interface should stay selected',previous,screen.display[net_row])
+  elif rows>=34:
+   net_row=next(i for i,line in enumerate(screen.display) if 'NET ' in line)
+   assert 'n/a' in screen.display[net_row],screen.display[net_row]
+   assert any('No interface data' in row for row in screen.display)
+   key(b'n')
+   assert any('No interface data' in row for row in screen.display)
   # Transparent canvas is preserved outside the selected row.
   assert screen.buffer[0][0].bg=='default'
   # Pause freezes the process list, select second row by mouse coordinates from the actual frame.
